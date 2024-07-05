@@ -58,3 +58,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
     closeButton.addEventListener("click", closeBanner);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Função para criar frutas caindo
+    function createFruit() {
+        const fruit = document.createElement('div');
+        fruit.classList.add('fruit');
+        const fruits = ['img/morango.png', 'img/banana.png', 'img/cherry.png', 'img/orange.png'];
+        const randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
+        fruit.style.backgroundImage = `url(${randomFruit})`;
+        fruit.style.left = `${Math.random() * 100}vw`;
+        fruit.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        fruit.style.opacity = Math.random();
+        document.getElementById('animated-background').appendChild(fruit);
+
+        setTimeout(() => {
+            fruit.remove();
+        }, (Math.random() * 3 + 2) * 1000);
+    }
+
+    // Cria frutas em intervalos
+    setInterval(createFruit, 300);
+});
